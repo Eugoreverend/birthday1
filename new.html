@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy birthday My Star</title>
+  <link rel="stylesheet" href="new.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #ffd6ff;
+      text-shadow: 0 0 10px #ff8cc6, 0 0 20px #c77dff;
+      animation: pulse 3s infinite alternate ease-in-out;
+    }
+    @keyframes pulse {
+      from { text-shadow: 0 0 5px #ff8cc6; }
+      to { text-shadow: 0 0 25px #c77dff; }
+    }
+
+    /* Clickable stars */
+    .clickable-star {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, #fff, #aaf);
+      border-radius: 50%;
+      box-shadow: 0 0 8px #fff;
+      cursor: pointer;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      z-index: 3;
+    }
+    .clickable-star:hover {
+      transform: scale(1.6);
+    }
+    .clickable-star.clicked {
+      background: #ffb3ec;
+      box-shadow: 0 0 12px #ff8cc6;
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    /* Hidden message */
+    #secretMessage {
+      opacity: 0;
+      transition: opacity 2s ease;
+      text-align: center;
+      font-size: 1.3rem;
+      color: #ffd6ff;
+      margin-top: 40px;
+      text-shadow: 0 0 10px #ff9eff;
+    }
+    #secretMessage.revealed {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="galaxy">
+    <!-- Shooting stars -->
+    <div class="shooting-star"></div><div class="shooting-star"></div><div class="shooting-star"></div>
+    <div class="shooting-star"></div><div class="shooting-star"></div><div class="shooting-star"></div>
+    <div class="shooting-star"></div><div class="shooting-star"></div><div class="shooting-star"></div>
+
+    <!-- Clickable stars (interactive ones) -->
+    <div class="clickable-star" style="top: 20%; left: 25%;"></div>
+    <div class="clickable-star" style="top: 50%; left: 70%;"></div>
+    <div class="clickable-star" style="top: 75%; left: 40%;"></div>
+    <div class="clickable-star" style="top: 30%; left: 85%;"></div>
+    <div class="clickable-star" style="top: 60%; left: 15%;"></div>
+
+    <div class="wrap">
+      <h1>Happy Birthday, My Star 🌙</h1>
+      <div class="postcard">
+        <p>
+          Sometimes I think about how impossible it is that we found each other — two souls drifting through galaxies of chance, somehow aligning across time and space. It feels almost unreal, almost otherworldly.
+
+You’ve become the gravity that anchors me and the light that pulls me forward. Even when we’re apart, I feel you — not just in thought, but deep within me, like some invisible thread connecting our hearts. It’s as if we’re speaking without words, like the universe itself made us telepathic.
+
+You understand me in ways no one else can. With just a glance, a silence, or a breath, I know what you mean — as if our souls have always known each other, long before this life.
+
+Every day with you reminds me how vast love can be — how it transcends space, distance, and time. You are the signal I’ll always tune to, the constant frequency in the noise of existence.
+
+Happy Birthday, my love
+May your light never fade, and may you always know that in this infinite expanse, you are my one and only star.
+
+          <span class="ullu">
+            With all the starlight in my heart,
+            Yours always,
+            Kael 🌠
+          </span>
+        </p>
+      </div>
+
+      <!-- Hidden secret message -->
+      <div id="secretMessage">💖 The universe whispers... you were my wish come true. 💖</div>
+    </div>
+  </div>
+
+  <script>
+    // Fade-in effect
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+
+    // Star click interactivity
+    const stars = document.querySelectorAll(".clickable-star");
+    const secretMessage = document.getElementById("secretMessage");
+    let clickedCount = 0;
+    const revealAfter = 3; // click 3 stars to reveal message
+
+    stars.forEach(star => {
+      star.addEventListener("click", () => {
+        if (!star.classList.contains("clicked")) {
+          star.classList.add("clicked");
+          clickedCount++;
+          if (clickedCount === revealAfter) {
+            secretMessage.classList.add("revealed");
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

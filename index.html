@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moonlit Path</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" />
+  <style>
+    body {
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+
+    .text h2 {
+      font-size: 1.6rem;
+      color: #e6e6ff;
+      text-shadow: 0 0 5px #a7a7ff;
+      animation: fadein 4s ease-in-out;
+    }
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    a {
+      display: inline-block;
+      margin-top: 1rem;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 10px 25px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #ffd6ff;
+      font-weight: bold;
+      transition: 0.4s;
+    }
+    a:hover {
+      color: #fff;
+      box-shadow: 0 0 10px #ff9eff;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="sky">
+    <div class="stars"></div>
+    <div class="moon"></div>
+    <div class="text">
+      <h2>
+        Under the hush of a silver sky,<br/>
+        where the stars hum softly of destiny,<br/>
+        I found you — my brightest light.<br/><br/>
+        <a id="nextBtn" href="new.html">Follow the moonlight →</a>
+      </h2>
+    </div>
+  </div>
+
+  <script>
+    // Fade-in when page loads
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+
+    // Fade-out transition when navigating
+    const nextBtn = document.getElementById("nextBtn");
+    nextBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      document.body.style.opacity = "0";
+      setTimeout(() => {
+        window.location.href = this.href;
+      }, 1200); // delay navigation
+    });
+  </script>
+</body>
+</html>
